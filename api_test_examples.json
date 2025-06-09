@@ -1,0 +1,175 @@
+{
+  "endpoints": {
+    "1_health_check": {
+      "method": "GET",
+      "url": "http://localhost:8000/api/health",
+      "description": "Check if the API and database are working",
+      "headers": {},
+      "body": null
+    },
+
+    "2_auth_test": {
+      "method": "GET",
+      "url": "http://localhost:8000/api/auth/test",
+      "description": "Test if auth router is working",
+      "headers": {},
+      "body": null
+    },
+
+    "3_student_signup": {
+      "method": "POST",
+      "url": "http://localhost:8000/api/auth/signup",
+      "description": "Register a new student",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "email": "john.doe@student.edu",
+        "password": "password123",
+        "full_name": "John Doe",
+        "user_type": "student",
+        "matricle_number": "CS2021001",
+        "department": "Computer Science",
+        "level": "Level 300"
+      }
+    },
+
+    "4_lecturer_signup": {
+      "method": "POST",
+      "url": "http://localhost:8000/api/auth/signup",
+      "description": "Register a new lecturer",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "email": "prof.smith@university.edu",
+        "password": "password123",
+        "full_name": "Prof. Jane Smith",
+        "user_type": "lecturer",
+        "employee_id": "EMP001",
+        "department": "Computer Science"
+      }
+    },
+
+    "5_admin_signup": {
+      "method": "POST",
+      "url": "http://localhost:8000/api/auth/signup",
+      "description": "Register a new admin",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "email": "admin@university.edu",
+        "password": "admin123",
+        "full_name": "System Administrator",
+        "user_type": "admin"
+      }
+    },
+
+    "6_student_login": {
+      "method": "POST",
+      "url": "http://localhost:8000/api/auth/login",
+      "description": "Login as student",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "email": "john.doe@student.edu",
+        "password": "password123"
+      }
+    },
+
+    "7_lecturer_login": {
+      "method": "POST",
+      "url": "http://localhost:8000/api/auth/login",
+      "description": "Login as lecturer",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "email": "prof.smith@university.edu",
+        "password": "password123"
+      }
+    },
+
+    "8_admin_login": {
+      "method": "POST",
+      "url": "http://localhost:8000/api/auth/login",
+      "description": "Login as admin",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "body": {
+        "email": "admin@university.edu",
+        "password": "admin123"
+      }
+    },
+
+    "9_get_current_user": {
+      "method": "GET",
+      "url": "http://localhost:8000/api/auth/me",
+      "description": "Get current user info (requires authentication)",
+      "headers": {
+        "Authorization": "Bearer YOUR_ACCESS_TOKEN_HERE",
+        "Content-Type": "application/json"
+      },
+      "body": null,
+      "note": "Replace YOUR_ACCESS_TOKEN_HERE with the token from login response"
+    },
+
+    "10_logout": {
+      "method": "POST",
+      "url": "http://localhost:8000/api/auth/logout",
+      "description": "Logout current user",
+      "headers": {
+        "Authorization": "Bearer YOUR_ACCESS_TOKEN_HERE",
+        "Content-Type": "application/json"
+      },
+      "body": null
+    }
+  },
+
+  "sample_responses": {
+    "successful_signup_response": {
+      "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "token_type": "bearer",
+      "user": {
+        "id": "123e4567-e89b-12d3-a456-426614174000",
+        "email": "john.doe@student.edu",
+        "full_name": "John Doe",
+        "user_type": "student"
+      }
+    },
+
+    "successful_login_response": {
+      "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+      "token_type": "bearer",
+      "user": {
+        "id": "123e4567-e89b-12d3-a456-426614174000",
+        "email": "john.doe@student.edu",
+        "full_name": "John Doe",
+        "user_type": "student"
+      }
+    },
+
+    "error_response": {
+      "detail": "User with this email already exists"
+    },
+
+    "health_check_response": {
+      "status": "healthy",
+      "message": "Attendance Management System API is running!",
+      "database": "connected",
+      "timestamp": "2024-01-15T10:30:00Z"
+    }
+  },
+
+  "testing_instructions": {
+    "step_1": "Start your backend server: python main.py",
+    "step_2": "Test health check first to ensure server is running",
+    "step_3": "Test signup endpoints to create users",
+    "step_4": "Test login endpoints to get access tokens",
+    "step_5": "Use the access token in Authorization header for protected endpoints",
+    "step_6": "Test the /me endpoint to verify authentication is working"
+  }
+}
